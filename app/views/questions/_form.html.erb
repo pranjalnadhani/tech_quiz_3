@@ -1,0 +1,26 @@
+<div class="form-horizontal">
+<%= form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+    <div class="alert alert-error">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div class="control-group">
+	    <%= f.label :title, class: "control-label" %>
+	    <div class="controls">
+	    	<%= f.text_area :title, :rows => 5, style: "max-width:100%;" %>
+	    </div>
+	  </div>
+  
+	<div class="control-group">
+		<div class="controls">
+	  		<%= f.submit nil, class: "btn btn-primary" %>
+		</div>
+	</div>
+<% end %>
+</div>

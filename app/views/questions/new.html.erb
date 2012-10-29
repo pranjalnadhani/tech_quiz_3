@@ -1,0 +1,15 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3"></div>
+		<div class="well span6">
+			<legend>New question</legend>
+			<%= render 'form' %>
+		
+			<%= link_to 'Back', questions_path, class: "btn btn-info" %>
+		</div>
+		<div class="span3"></div>
+	</div>
+</div>		
+<% content_for(:title) do %>
+  New Question - TecH QuiZ 3
+<% end %>

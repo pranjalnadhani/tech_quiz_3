@@ -1,0 +1,20 @@
+<div class="well">
+<h1><%= @question.title %></h1>
+<p>Question <%= @current + 1 %> of <%= @total %></p>
+
+<%= form_tag({:controller => "quiz", :action => "answer"}) do %>
+  <% @choices.each do |choice| %>
+	 <div class="radio" style="max-width: 50%;">
+		<%= radio_button_tag(:choice, choice.id) %>
+		<%= label_tag("choice_".concat(choice.id.to_s).to_sym, choice.text) %>
+	 </div>
+  <% end %>
+  
+  <div class="center">
+	 <%= submit_tag("Continue", :class => "btn btn-inverse btn-large") %>
+  </div>
+<% end %>
+</div>
+<% content_for(:title) do %>
+  TecH QuiZ 3 - question <%= @current + 1 %>
+<% end %>

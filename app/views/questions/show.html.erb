@@ -1,0 +1,67 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2"></div>
+		<div class="well span8">
+			<legend><%= @question.title %></legend>
+			<div class="control-group">
+				<div class="controls btn-group">
+					<%= link_to 'Back', questions_path, class: "btn btn-info" %>	
+					<%= link_to 'Edit', edit_question_path(@question), class: "btn btn-warning" %>
+				</div>	
+			</div>
+			<% if @question.choices.size > 0 %>
+				
+				<table class="table table-hover" style="border: 0px;">
+					<thead>
+						<tr>
+							<th>Options</th>
+						</tr>
+					</thead>
+					<tbody>
+					  <% @question.choices.each do |choice| %>
+						 <% if choice.correct %>
+							<tr class="success">
+						<% else %>
+							<tr class="info">
+						<% end %>
+								<td><%= choice.text %></td>
+								<td><%= link_to 'Delete', [@question, choice], :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger pull-right' %></td>
+						 	</tr>
+					  <% end %>
+					</tbody>
+				</table>
+			<% else %>
+				<br />
+				<blockquote>This question has no options, add some options to it.</blockquote>
+			<% end %>
+		<div class="form-horizontal">
+			<%= form_tag({:controller => "choices", :action => "create", :html => {:class => "form-horizontal"}}) do %>
+				<%= hidden_field_tag :question, @question.id %>
+	 				<legend>New Option</legend>
+ 					<div class="control-group">
+						<label class="control-label">Text:</label>
+						<div class="controls">
+							<%= text_area_tag :text, nil, style: "max-width: 100%;", class: "text-area", rows: "5" %>
+						</div>
+					</div>
+					<div class="control-group">
+			  			<div class="controls">
+			  				<div class="checkbox">
+			  					<%= check_box_tag :correct %>
+			  					<%= label_tag :correct, "Correct" %>
+			  				</div>
+			  			</div>
+			  		</div>
+			  		<div class="control-group">
+			  			<div class="controls">
+			  				<%= submit_tag "Create", class: "btn btn-primary" %>
+			  			</div>
+			  		</div>
+			<% end %>
+		</div>
+		<div class="span2"></div>
+	</div>
+</div>
+<% content_for(:title) do %>
+  Question Details
+<% end %>
