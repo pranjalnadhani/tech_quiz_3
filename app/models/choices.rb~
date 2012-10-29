@@ -1,3 +1,0 @@
-class Choices < ActiveRecord::Base
-  attr_accessible :correct, :question_id, :text
-end
