@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :is_admin, :avatar, :username, :login, :first_name, :last_name, :sex, :date_of_birth
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :is_admin, :avatar, :username, :login, :first_name, :last_name, :sex, :date_of_birth, :full_name
   validates :username, :presence => true, :uniqueness => true
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
   # This is the correct method you override with the code above
   # def self.find_for_database_authentication(warden_conditions)
   # end
+  
+  def full_name
+    [first_name, last_name].join(' ')
+  end
+
+  def full_name=(name)
+    split = name.split(' ', 2)
+    self.first_name = split.first
+    self.last_name = split.last
+  end
 
   # attr_accessible :title, :body
   has_many :quizzes

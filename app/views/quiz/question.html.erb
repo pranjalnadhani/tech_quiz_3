@@ -1,20 +1,28 @@
+<div class="alert alert-info">
+	<h4>Don't want to risk in this question?</h4>
+	<br />
+	<p>To skip this question, don't select any option while clicking the continue button.</p>
+</div>
 <div class="well">
-<h1><%= @question.title %></h1>
-<p>Question <%= @current + 1 %> of <%= @total %></p>
+<p class="pull-right"><%= @current + 1 %> / <%= @total %></p>
+<legend><%= @question.title %></legend>
 
 <%= form_tag({:controller => "quiz", :action => "answer"}) do %>
-  <% @choices.each do |choice| %>
-	 <div class="radio" style="max-width: 50%;">
-		<%= radio_button_tag(:choice, choice.id) %>
-		<%= label_tag("choice_".concat(choice.id.to_s).to_sym, choice.text) %>
-	 </div>
-  <% end %>
-  
-  <div class="center">
-	 <%= submit_tag("Continue", :class => "btn btn-inverse btn-large") %>
-  </div>
+	<blockquote>
+		<% @choices.each do |choice| %>
+			<div class="radio" style="max-width: 50%;">
+				<%= radio_button_tag(:choice, choice.id) %>
+				<%= label_tag("choice_".concat(choice.id.to_s).to_sym, choice.text) %>
+		 	</div>
+		<% end %>
+	</blockquote>
+
+	<center>
+		<%= submit_tag("Continue", :class => "btn btn-inverse btn-large") %>
+	</center>
 <% end %>
 </div>
+
 <% content_for(:title) do %>
   TecH QuiZ 3 - question <%= @current + 1 %>
 <% end %>

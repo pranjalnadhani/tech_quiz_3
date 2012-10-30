@@ -1,35 +1,41 @@
-<h1>Manage your questions in the quiz...</h1>
-<div class="hero-unit">
-	<% if @questions.size > 0 %>
-		<table class="table table-hover">
-		  <thead>
-		    <tr>
-		      <th>Questions</th>
-		      <th></th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <% @questions.each do |quest| %>
-		      <tr>
-		        <td><%= quest.title %></td>
-		        <td>
-		        	<div class="btn-group pull-right">
-			        	<%= link_to 'Show', quest, class: "btn btn-info" %>
-			        	<%= link_to 'Edit', edit_question_path(quest), class: "btn btn-warning" %>
-			        	<%= link_to 'Delete', quest, :confirm => 'Sure?', :method => :delete, class: "btn btn-danger" %></td>
-			        </div>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>
-	<% else %>
-		<br />
-		<blockquote>There aren't any questions available for the quiz :( Please add some...</blockquote>
-	<% end %>
-</div>
-<p>Total: <%= pluralize(@questions.size, "question") %></p>
+<legend>Manage your questions in the quiz...</legend>
+
+<% if @questions.size > 0 %>
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th>Questions</th>
+	      <th>Created</th>
+	      <th>Updated</th>
+	      <th>No. of options</th>
+	      <th></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @questions.each do |quest| %>
+	      <tr>
+	        <td><%= quest.title %></td>
+	        <td><%= time_ago_in_words quest.created_at %> ago.</td>
+	        <td><%= time_ago_in_words quest.updated_at %> ago.</td>
+	        <td><%= quest.choices.count %></td>
+	        <td>
+	        	<div class="btn-group pull-right">
+		        	<%= link_to 'Show', quest, class: "btn btn-info" %>
+		        	<%= link_to 'Edit', edit_question_path(quest), class: "btn btn-warning" %>
+		        	<%= link_to 'Delete', quest, :confirm => 'Sure?', :method => :delete, class: "btn btn-danger" %></td>
+		        </div>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+	<p>Total: <%= pluralize(@questions.size, "question") %></p>
+<% else %>
+	<br />
+	<blockquote>There aren't any questions available for the quiz :( Please add some...</blockquote>
+<% end %>
+
 <p><%= link_to 'New Question', new_question_path, class: "btn btn-primary" %></p>
 
 <% content_for(:title) do %>
-  All Questions
+  Questions dashboard - TecH QuiZ 3
 <% end %>

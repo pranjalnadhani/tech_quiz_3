@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   # GET /questions.xml
   def index
     @questions = Question.all
-    @questions.sort! {|a,b| a.title <=> b.title}
+    @questions.sort! {|a,b| b.created_at <=> a.created_at}
 
     respond_to do |format|
       format.html # index.html.erb

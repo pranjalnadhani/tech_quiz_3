@@ -21,14 +21,31 @@
 	    </div>
 	
 	    <div class="control-group">
-	      <%= f.label :email, :class => "control-label" %>
+	      <label class="control-label">Name:</label>
+	      <div class="controls">
+	        <%= f.text_field :full_name, :placeholder => "Your first and last name, separated by a space...", :class => "input-fit", :value => "" %>
+	        <p class="help-inline">For the love of god, don't add a middle name!</p>
+	      </div>
+	    </div>
+
+	    <div class="control-group">
+	      <label class="control-label">Email:</label>
 	      <div class="controls">
 	        <%= f.email_field :email, :placeholder => "Enter your email..." %>
+	        <p class="help-inline">Your email, where we send you our notifications...</p>
 	      </div>
 	    </div>
 	
 	    <div class="control-group">
-	      <%= f.label :password, :class => "control-label" %>
+	      <label class="control-label">Username:</label>
+	      <div class="controls">
+	        <%= f.text_field :username, :placeholder => "Enter a desired username..." %>
+	        <p class="help-inline">Beware! This must be unique...</p>
+	      </div>
+	    </div>
+	
+	    <div class="control-group">
+	      <label class="control-label">Password:</label>
 	      <div class="controls">
 	        <%= f.password_field :password %>
 	        <p class="help-inline">Should be atleast 6 characters long...</p>
@@ -36,26 +53,46 @@
 	    </div>
 	
 	    <div class="control-group">
-	      <%= f.label :password_confirmation, :class => "control-label" %>
+	      <label class="control-label">Confirm password:</label>
 	      <div class="controls">
 	        <%= f.password_field :password_confirmation %>
 	        <p class="help-inline">Retype your password...</p>
 	      </div>
 	    </div>
 	
+	    <div class="control-group">
+	      <label class="control-label">Gender:</label>
+	      <div class="controls">
+	        <%= f.select :sex, [['Select',''],['Male','Male'],['Female', 'Female'],['Other', 'Other']] %>
+	        <p class="help-inline">Try being honest here...</p>
+	      </div>
+	    </div>
+	
+	    <div class="control-group">
+	      <label class="control-label">Date of birth:</label>
+	      <div class="controls">
+	        <%= f.date_select :date_of_birth, {:start_year => Time.now.year - 100, :end_year => Time.now.year - 12, :order => [:day, :month, :year], :default => { :year => "Select year", :month => "Select month", :day => "Select day" }, :prompt => { :year => "Select year", :month => "Select month", :day => "Select day" }}, :style => "min-width: 10%; max-width: 25%;" %>
+	      </div>
+	    </div>
+
+	    <div class="control-group">
+	      <label class="control-label">Profile picture:</label>
+	      <div class="controls">
+	        <%= f.file_field :avatar %>
+	        <p class="help-inline">Try to upload an image only, nothing else!</p>
+	      </div>
+	    </div>
+
 	    <div class="form-actions">
 	      <%= f.submit "Sign up", class: "btn btn-primary" %>
 	    </div>
 	  </fieldset>
+	  <center>
+	    <%= render "devise/shared/links" %>
+	  </center>
 	</div>
 	<div class="span2"></div>
 	</div>
 	</div>
 	<% end %>
-	
-	<div class="form-actions">
-	  <div class="span4"></div>
-	    <%= render "devise/shared/links" %>
-	  <div class="span4"></div>
-	</div>
 <% end %>

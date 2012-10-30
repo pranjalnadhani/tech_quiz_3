@@ -11,9 +11,9 @@
 	        </div>
 	
 	        <div class="control-group">
-	          <%= f.label :email, class: "control-label" %>
+	          <label class="control-label">Username or email:</label>
 	          <div class="controls">
-	            <%= f.email_field :email, class: "input-fit" %>
+	            <%= f.text_field :login, class: "input-fit" %>
 	            <p class="help-inline">We need to know what your identity is...</p>
 	          </div>
 	        </div>
@@ -36,7 +36,7 @@
 	          </div>
 	        <% end %>
 	
-	        <div class="form-actions">
+	        <div class="form-actions input-fit">
 	          <%= f.submit "Sign in", class: "btn btn-primary" %>
 	          <hr />
 	          <%= render "devise/shared/links" %>
