@@ -1,25 +1,87 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "form-horizontal" }) do |f| %>
+	<% if !(devise_error_messages!).empty? %>
+	    <div class="alert alert-error">
+	    	<button class="close" data-dismiss="alert">x</button>
+	    	<%= devise_error_messages! %>
+		</div>
+	<% end %>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span2"></div>
+			<div class="well span8">
+				<fieldset>
+					<legend>Edit profile</legend>
+					
+					<div class="control-group">
+						<%= f.label :full_name, class: "control-label" %>
+						<div class="controls">
+							<%= f.text_field :full_name %>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<%= f.label :username, class: "control-label" %>
+						<div class="controls">
+							<%= f.text_field :username %>
+						</div>
+					</div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+					<div class="control-group">
+						<%= f.label :email, class: "control-label" %>
+						<div class="controls">
+							<%= f.email_field :email %>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<%= f.label :password, class: "control-label" %>
+						<div class="controls">
+							<%= f.password_field :password %>
+							<i class="help-inline">Leave blank if you don't want to change it.</i>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<%= f.label :password_confirmation, class: "control-label" %>
+						<div class="controls">
+							<%= f.password_field :password_confirmation %>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<%= f.label :current_password, class: "control-label" %>
+						<div class="controls">
+							<%= f.password_field :current_password %>
+							<i class="help-inline">We need your current password to confirm your changes.</i>
+						</div>
+					</div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+					<hr />
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
+					<div class="controls">
+						<%= f.submit "Save the information", class: "btn btn-primary" %>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2"></div>
+		<div class="alert alert-error span8">
+			<legend>Delete account</legend>
+			<table class="table table-hover">
+				<tr>
+					<td>
+						Unhappy with our service?
+					</td>
+					<td>
+						<%= link_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "btn btn-danger pull-right" %>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<center><%= link_to "Back to previous page", :back, class: "btn btn-info" %></center>
