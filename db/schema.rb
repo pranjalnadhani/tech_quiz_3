@@ -11,20 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101195412) do
+ActiveRecord::Schema.define(:version => 20121101205447) do
 
   create_table "choices", :force => true do |t|
     t.text     "text"
     t.boolean  "correct"
     t.integer  "question_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "option_file_name"
+    t.string   "option_content_type"
+    t.integer  "option_file_size"
+    t.datetime "option_updated_at"
   end
 
   create_table "questions", :force => true do |t|
     t.text     "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "main_file_name"
+    t.string   "main_content_type"
+    t.integer  "main_file_size"
+    t.datetime "main_updated_at"
   end
 
   create_table "results", :force => true do |t|

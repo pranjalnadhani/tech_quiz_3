@@ -2,6 +2,8 @@ class Question < ActiveRecord::Base
   attr_accessible :title
   has_many :choices
   
+  has_attached_file :main, :styles => { :full => "256x256>", :mini => "48x48>" }
+  
   def answer
 	 uncorrect
 	 choices.select {|c| c.correct}[0]

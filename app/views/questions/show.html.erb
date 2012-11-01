@@ -24,9 +24,12 @@
 						<% else %>
 							<tr class="info">
 						<% end %>
-								<td><%= choice.text %></td>
-								<td><%= link_to 'Delete', [@question, choice], :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger pull-right' %></td>
-						 	</tr>
+							<% if choice.option.file? %>
+								<td><%= image_tag choice.option(:full).url %></td>	
+							<% end %>
+							<td><%= choice.text %></td>
+							<td><%= link_to 'Delete', [@question, choice], :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger pull-right' %></td>
+						 </tr>
 					  <% end %>
 					</tbody>
 				</table>
@@ -42,6 +45,12 @@
 						<label class="control-label">Text:</label>
 						<div class="controls">
 							<%= text_area_tag :text, nil, style: "max-width: 100%;", class: "text-area", rows: "5" %>
+						</div>
+					</div>
+ 					<div class="control-group">
+						<label class="control-label">Image:</label>
+						<div class="controls">
+							<%= file_field_tag :option %>
 						</div>
 					</div>
 					<div class="control-group">

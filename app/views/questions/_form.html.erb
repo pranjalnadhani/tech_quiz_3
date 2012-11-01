@@ -16,7 +16,14 @@
 	    	<%= f.text_area :title, :rows => 5, style: "max-width:100%;" %>
 	    </div>
 	  </div>
-  
+
+	<div class="control-group">
+	    <label class="control-label">Image:</label>
+	    <div class="controls">
+	    	<%= f.file_field :main %>
+	    </div>
+	  </div>
+	  
 	<div class="control-group">
 		<div class="controls">
 	  		<%= f.submit nil, class: "btn btn-primary" %>

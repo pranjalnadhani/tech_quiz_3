@@ -3,7 +3,7 @@ class QuizController < ApplicationController
 
   def index
     data = Result.where(:user_id => current_user.id)
-    if data.size > 1
+    if data.size > 0
       redirect_to root_path, :flash => { :error => "Well, you have already given the quiz, so we can't allow you to do the same again..." }
     end
   end
