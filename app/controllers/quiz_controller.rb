@@ -2,6 +2,10 @@ class QuizController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    data = Result.where(:user_id => current_user.id)
+    if data.size > 1
+      redirect_to root_path, :flash => { :error => "Well, you have already given the quiz, so we can't allow you to do the same again..." }
+    end
   end
   
   def start
@@ -50,6 +54,7 @@ class QuizController < ApplicationController
 	 end
 	 
 	 session[:current] += 1
+	 redirect_to :action => :question
   end
 
   def end
@@ -57,5 +62,6 @@ class QuizController < ApplicationController
 	 @total   = session[:total]
 	 
 	 @score = @correct * 100 / @total
+	 Result.create(:user_id => current_user.id, :percentage => @score)
   end
 end

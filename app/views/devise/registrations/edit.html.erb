@@ -7,36 +7,37 @@
 	<% end %>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span2"></div>
-			<div class="well span8">
+			<center class="well" style="text-align:left;">
 				<fieldset>
 					<legend>Edit profile</legend>
 					
 					<div class="control-group">
 						<%= f.label :full_name, class: "control-label" %>
 						<div class="controls">
-							<%= f.text_field :full_name %>
+							<%= f.text_field :full_name, class: "input-large input-fit" %>
+							<i class="help-inline">For the love of god, don't include a middle name!</i>
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<%= f.label :username, class: "control-label" %>
 						<div class="controls">
-							<%= f.text_field :username %>
+							<%= f.text_field :username, class: "input-large input-fit" %>
+							<i class="help-inline">Must be unique!</i>
 						</div>
 					</div>
 
 					<div class="control-group">
 						<%= f.label :email, class: "control-label" %>
 						<div class="controls">
-							<%= f.email_field :email %>
+							<%= f.email_field :email, class: "input-large input-fit" %>
 						</div>
 					</div>
 					
 					<div class="control-group">
 						<%= f.label :password, class: "control-label" %>
 						<div class="controls">
-							<%= f.password_field :password %>
+							<%= f.password_field :password, class: "input-fit" %>
 							<i class="help-inline">Leave blank if you don't want to change it.</i>
 						</div>
 					</div>
@@ -44,25 +45,47 @@
 					<div class="control-group">
 						<%= f.label :password_confirmation, class: "control-label" %>
 						<div class="controls">
-							<%= f.password_field :password_confirmation %>
+							<%= f.password_field :password_confirmation, class: "input-fit" %>
 						</div>
 					</div>
-					
+
+				    <div class="control-group">
+				      <label class="control-label">Gender:</label>
+				      <div class="controls">
+				        <%= f.select :sex, [['Select',''],['Male','Male'],['Female', 'Female'],['Other', 'Other']], class: "input-fit" %>
+				        <i class="help-inline">Don't be very much unstable at this!</i>
+				      </div>
+				    </div>
+				
+				    <div class="control-group">
+				      <label class="control-label">Date of birth:</label>
+				      <div class="controls">
+				        <%= f.date_select :date_of_birth, {:start_year => Time.now.year - 100, :end_year => Time.now.year - 12, :order => [:day, :month, :year], :default => { :year => "Select year", :month => "Select month", :day => "Select day" }, :prompt => { :year => "Select year", :month => "Select month", :day => "Select day" }}, :style => "max-width: 25%;" %>
+				      </div>
+				    </div>
+			
+				    <div class="control-group">
+				      <label class="control-label">Profile picture:</label>
+				      <div class="controls">
+				        <%= f.file_field :avatar, class: "input-fit" %>
+				        <i class="help-inline">Choose something if you think you aren't good enough!</i>
+				      </div>
+				    </div>
+				
 					<div class="control-group">
 						<%= f.label :current_password, class: "control-label" %>
 						<div class="controls">
-							<%= f.password_field :current_password %>
+							<%= f.password_field :current_password, class: "input-fit" %>
 							<i class="help-inline">We need your current password to confirm your changes.</i>
 						</div>
 					</div>
 
 					<hr />
-
 					<div class="controls">
 						<%= f.submit "Save the information", class: "btn btn-primary" %>
 					</div>
 				</fieldset>
-			</div>
+			</center>
 		</div>
 	</div>
 <% end %>

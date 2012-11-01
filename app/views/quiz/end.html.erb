@@ -1,21 +1,6 @@
-<!--
-# ITESM CEM, May 11, 2011.
-# Ruby Source File
-# Activity::  Final Project: Design Patterns Quiz App
-# Author::    1165536 Juliana Pena
--->
-
-<h1>Quiz Results</h1>
-<p id="question">You answered correctly <%= @correct %> out of <%= @total %> questions.</p>
-
-<p id="score"><%= @score %>%</p>
-
-<%= form_tag({:controller => "quiz", :action => "index"}, :method => "get") do %>
-  <div class="center">
-	 <%= submit_tag("Take another quiz", :class => "submit") %>
-  </div>
-<% end %>
+<legend>So, that was the end!</legend>
+<p>Well, that's all what we had for the quiz. We hope you scored well in the quiz. Your results have been submitted, and you will be notified shortly of your performance!</p>
 
 <% content_for(:title) do %>
-  Quiz Results
+  Quiz Finished
 <% end %>
